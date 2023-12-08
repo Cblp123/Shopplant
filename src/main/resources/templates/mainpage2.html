@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <main>
+        <div class="container py-4">
+            <header class="pb-3 mb-4 border-bottom">
+                <div class="d-flex align-items-center text-dark text-decoration-none">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5775/5775998.png" width="40" height="40" alt="" title="" class="img-small">
+                    <div class="mb-1 d-flex justify-content-start align-items-center">
+                        <a href="/" class="fs-4" style="color: black; text-decoration: none;">
+                            Магазин растений
+                        </a>
+                    </div>
+                    <div class="ms-auto me-2 d-flex">
+                        <a href="http://localhost:8080/info" class="btn btn-primary btn-lg me-2">Создатели</a>
+                        <a href="http://localhost:8080/lk" class="btn btn-primary btn-lg me-2">Личный кабинет</a>
+                    </div>
+                </div>
+            </header>
+
+            <header class="pb-3 mb-4 border-bottom custom">
+                <style>
+                    .custom .container {
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap; /* Это позволяет элементам переноситься на новую строку, если не хватает места */
+                    }
+
+                    .plant-card {
+                        box-sizing: border-box;
+                        width: 22%; /* уменьшена ширина для учета отступов и рамок */
+                        margin: 1%; /* уменьшен отступ */
+                        text-align: center;
+                        border: 2px solid green;
+                        padding: 10px;
+                    }
+
+                    .plant-image {
+                        width: 100%;
+                        height: 250px;
+                        object-fit: cover;
+                    }
+
+                    .plant-info {
+                        margin-top: 10px;
+                    }
+
+                </style>
+                <div class="container mt-5">
+                    <div th:each="element : ${plants}" class="plant-card">
+                        <img th:src="${element.photoUrl}" alt="Plant Image" class="plant-image">
+                        <div class="plant-info">
+                            <h3 th:text="${element.title}"></h3>
+                            <h2 th:text="${element.price} + ' руб'"></h2>
+                            <p th:text="${element.description.length() > 20 ? element.description.substring(0, 20) + '...' : element.description}"></p>
+                            <p th:text="'Продавец: ' + ${element.sellerName}"></p>
+                            <a th:href="'/plant/' + ${element.id}" class="btn btn-primary">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </main>
+</body>
+</html>
