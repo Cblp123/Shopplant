@@ -1,4 +1,4 @@
-Java | Spring Boot | MySQL <br>
+Java | Spring Boot | HTML/CSS | MySQL <br>
 Shop of planets<br>
 Project made for student subject by 4 students<br>
 
